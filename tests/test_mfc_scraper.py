@@ -6,7 +6,7 @@ import pytest
 
 from click.testing import CliRunner
 
-from mfc_scraper import mfc_scraper
+from mfc_scraper import scraper
 from mfc_scraper import cli
 
 

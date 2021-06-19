@@ -103,3 +103,6 @@ ENV/
 
 # IDE settings
 .vscode/
+
+#generated output
+mfc_scraper/output/
