@@ -30,7 +30,7 @@ class FigureDataParser:
     @property
     def characters(self) -> List[str]:
         try:
-            return [str(e.string for e in self.__get_all_data().get("characters").select("span"))]
+            return [str(e.string) for e in self.__get_all_data().get("characters").select("span")]
         except AttributeError:
             try:
                 return [str(self.__get_all_data().get("character").select_one("span").string)]
