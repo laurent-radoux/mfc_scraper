@@ -11,10 +11,10 @@ from mfc_scraper.pages.figure_collection_page import FigureCollectionPage, NoFig
 from mfc_scraper.pages.figure_page import FigurePage
 
 
-def get_all_figures() -> List[int]:
+def get_all_figures(username: str) -> List[int]:
     base_url = "https://myfigurecollection.net/users.v4.php"
     url_parameters = {
-        "username": "Nightzus",
+        "username": username,
         "mode": "view",
         "tab": "collection",
         "status": 2,

@@ -7,7 +7,7 @@ import pytest
 from click.testing import CliRunner
 
 from mfc_scraper import scraper
-from mfc_scraper import cli
+from mfc_scraper import app
 
 
 @pytest.fixture
@@ -29,9 +29,9 @@ def test_content(response):
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(cli.main)
+    result = runner.invoke(app.main)
     assert result.exit_code == 0
     assert 'mfc_scraper.cli.main' in result.output
-    help_result = runner.invoke(cli.main, ['--help'])
+    help_result = runner.invoke(app.main, ['--help'])
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output

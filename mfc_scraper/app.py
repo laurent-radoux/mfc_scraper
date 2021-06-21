@@ -9,7 +9,7 @@ from mfc_scraper import scraper
 
 @click.command()
 def main(args=None):
-    figures_data = scraper.get_figures_data(scraper.get_all_figures())
+    figures_data = scraper.get_figures_data(scraper.get_all_figures("Nightzus"))
 
     figures_filepath = "output/figures.json"
     os.makedirs(os.path.dirname(figures_filepath), exist_ok=True)
