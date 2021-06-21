@@ -12,8 +12,11 @@ def dump_collection(username, output_folder, new_only, images):
     all_figures = scraper.get_all_figure_ids(username)
     already_dumped_figures = []
     if new_only:
-        with open(figures_filepath, "r") as data_file:
-            already_dumped_figures = json.load(data_file)
+        try:
+            with open(figures_filepath, "r") as data_file:
+                already_dumped_figures = json.load(data_file)
+        except FileNotFoundError:
+            pass
 
     figures_to_load = [f for f in all_figures if f not in [f["id"] for f in already_dumped_figures]]
     new_figures_data = scraper.get_figures_data(figures_to_load)
