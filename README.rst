@@ -7,7 +7,7 @@ MFC Scraper
         :target: https://pypi.python.org/pypi/mfc_scraper
 
 
-.. image:: https://github.com/laurent-radoux/mfc_scraper/actions/workflows/python-test/badge.svg
+.. image:: https://github.com/laurent-radoux/mfc_scraper/actions/workflows/python-test.yml/badge.svg
         :target: https://github.com/laurent-radoux/mfc_scraper/actions
 
 
