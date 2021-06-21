@@ -31,7 +31,7 @@ setup(
     description="Scrapes the content of one's collection of figures listed on MyFigureCollection",
     entry_points={
         'console_scripts': [
-            'mfc_scraper=mfc_scraper.cli:main',
+            'mfc_scraper=mfc_scraper.__main__:main',
         ],
     },
     install_requires=requirements,
