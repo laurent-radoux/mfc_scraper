@@ -6,10 +6,10 @@ from mfc_scraper import dumper
 
 
 @click.command()
-@click.option("-u", "--username", required=True)
-@click.option("-o", "--output-folder", default="output")
-@click.option("--new-only/--all", default=True)
-@click.option("--images/--no-images", default=True)
+@click.option("-u", "--username", required=True, help="Username of the figure owner")
+@click.option("-o", "--output-folder", default="output", help="Output folder path")
+@click.option("--new-only/--all", default=True, help="Specifies whether only new or all data should be fetched")
+@click.option("--images/--no-images", default=True, help="Specifies whether images should be fetched")
 def main(username, output_folder, new_only, images):
     dumper.dump_collection(username, output_folder, new_only, images)
 
