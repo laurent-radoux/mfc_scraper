@@ -1,4 +1,4 @@
-name: Python package - Test and deploy
+name: Python package - Test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
