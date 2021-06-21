@@ -6,8 +6,10 @@ MFC Scraper
 .. image:: https://img.shields.io/pypi/v/mfc_scraper.svg
         :target: https://pypi.python.org/pypi/mfc_scraper
 
-.. image:: https://img.shields.io/travis/laurent-radoux/mfc_scraper.svg
-        :target: https://travis-ci.com/laurent-radoux/mfc_scraper
+
+.. image:: https://github.com/laurent-radoux/mfc_scraper/actions/workflows/python-test/badge.svg
+        :target: https://github.com/laurent-radoux/mfc_scraper/actions
+
 
 .. image:: https://readthedocs.org/projects/mfc-scraper/badge/?version=latest
         :target: https://mfc-scraper.readthedocs.io/en/latest/?version=latest
