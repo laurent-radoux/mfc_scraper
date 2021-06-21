@@ -1,8 +1,4 @@
-"""Main module."""
-
-from typing import List
-import os
-import shutil
+from typing import List, Dict, Union
 import requests
 from tqdm import tqdm
 import multiprocessing as mp
@@ -41,24 +37,24 @@ def get_all_figures(username: str) -> List[int]:
     return all_figures
 
 
-def get_figure_data(figure_id: int):
+def _get_figure_data(figure_id: int) -> Dict[str, Union[List, str, int]]:
     base_url = "https://myfigurecollection.net/item/"
     return FigurePage(figure_id, requests.get(f"{base_url}{figure_id}").text).data.to_dict()
 
 
-def get_figures_data(figure_ids: List[int]):
+def get_figures_data(figure_ids: List[int]) -> List[Dict[str, Union[List, str, int]]]:
     with mp.Pool(mp.cpu_count()) as pool:
-        return list(tqdm(pool.imap(get_figure_data, figure_ids), total=len(figure_ids)))
+        return list(tqdm(pool.imap(_get_figure_data, figure_ids), total=len(figure_ids)))
 
 
-def dump_image(url: str, local_filepath: str):
+def _get_image(url: str):
     response = requests.get(url, stream=True)
-    os.makedirs(os.path.dirname(local_filepath), exist_ok=True)
-    with open(local_filepath, "wb") as output_file:
-        shutil.copyfileobj(response.raw, output_file)
+    return response.raw
 
 
-def dump_all_images(figures_data: List):
-    for f in figures_data:
-        for i, u in enumerate(f["image_urls"]):
-            dump_image(u, f"output/images/{f['id']}_{i}.jpg")
+def _get_figure_images(figure_data):
+    return {"id": figure_data["id"], "images": [_get_image(u) for u in figure_data["image_urls"]]}
+
+
+def get_all_images(figures_data: List[Dict[str, Union[List, str, int]]]):
+    return list(tqdm(map(_get_figure_images, figures_data), total=len(figures_data)))
