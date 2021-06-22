@@ -17,7 +17,6 @@ MFC Scraper
 
 
 
-
 Scrapes the content of one's collection of figures listed on MyFigureCollection
 
 
@@ -28,7 +27,20 @@ Scrapes the content of one's collection of figures listed on MyFigureCollection
 Features
 --------
 
-* TODO
+* Scrapes the following information from MFC
+
+  * All figure IDs owned by a particular user
+  * For a particular figure
+
+    * The characters represented
+    * The company manufacturing the figure
+    * Its classification
+    * The main image URL
+
+  * Images associated to a given figure
+
+* Stores the scraped content as a JSON list in a file.
+* Stores the figure images.
 
 Credits
 -------
