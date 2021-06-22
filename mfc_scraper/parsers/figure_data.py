@@ -38,16 +38,29 @@ class FigureDataParser:
                 return []
 
     @property
-    def company(self) -> str:
+    def companies(self) -> List[str]:
         try:
-            return str(self.__get_all_data().get("company").select_one("span").string)
+            return [str(e.string) for e in self.__get_all_data().get("companies").select("span")]
         except AttributeError:
-            return "UNDEFINED"
+            try:
+                return [str(self.__get_all_data().get("company").select_one("span").string)]
+            except AttributeError:
+                return []
 
     @property
-    def classification(self) -> str:
+    def classifications(self) -> List[str]:
         try:
-            return str(self.__get_all_data().get("classification").select_one("span").string)
+            return [str(e.string) for e in self.__get_all_data().get("classifications").select("span")]
+        except AttributeError:
+            try:
+                return [str(self.__get_all_data().get("classification").select_one("span").string)]
+            except AttributeError:
+                return []
+
+    @property
+    def version(self) -> str:
+        try:
+            return str(self.__get_all_data().get("version").select_one("a").string)
         except AttributeError:
             return "UNDEFINED"
 
@@ -66,7 +79,8 @@ class FigureDataParser:
         return {
                 "id": self.id,
                 "characters": self.characters,
-                "company": self.company,
-                "classification": self.classification,
+                "companies": self.companies,
+                "classifications": self.classifications,
+                "version": self.version,
                 "image_urls": self.image_urls,
             }
