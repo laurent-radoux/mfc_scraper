@@ -2,6 +2,15 @@
 History
 =======
 
+
+0.2.0 (2021-06-22)
+------------------
+* Added origin, version and release date to scraped information
+* Changed company and classification to return a list instead of a string
+
+  * Handles cases where multiple companies or classifications are involved
+
+
 0.1.2 (2021-06-21)
 ------------------
 * First release on PyPI.

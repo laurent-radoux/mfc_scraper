@@ -33,8 +33,11 @@ Features
   * For a particular figure
 
     * The characters represented
-    * The company manufacturing the figure
-    * Its classification
+    * Its origin
+    * The companies manufacturing the figure
+    * Its classifications
+    * Its version
+    * Its release date
     * The main image URL
 
   * Images associated to a given figure
