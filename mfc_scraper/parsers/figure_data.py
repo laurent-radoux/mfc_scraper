@@ -1,6 +1,6 @@
+import re
 from typing import Dict, List, Union
-from collections import namedtuple
-from datetime import datetime
+from datetime import date
 from bs4 import element
 
 from mfc_scraper.locators.figure_page_locators import FigurePageLocators
@@ -17,8 +17,6 @@ class FigureDataParser:
         self._data = None
         self.id = figure_id
 
-    __DataPiece = namedtuple("DataPiece", ["name", "value"])
-
     def __get_all_data(self) -> Dict[str, element.Tag]:
         if not self._data:
             data_names = [e.string.lower() for e in self._parent.select(FigurePageLocators.DATA_NAME)]
@@ -26,6 +24,13 @@ class FigureDataParser:
             self._data = dict(zip(data_names, data_values))
 
         return self._data
+
+    @property
+    def origin(self) -> str:
+        try:
+            return str(self.__get_all_data().get("origin").select_one("span").string)
+        except AttributeError:
+            return "UNDEFINED"
 
     @property
     def characters(self) -> List[str]:
@@ -59,14 +64,24 @@ class FigureDataParser:
             return []
 
     @property
-    def release_date(self) -> datetime:
-        return datetime.now()
+    def release_date(self) -> date:
+        try:
+            raw_date_str = self.__get_all_data().get("release date").select_one("a").attrs.get("href")
+            matcher = re.search("year=(\d+)&month=(\d+)", raw_date_str)
+            return date(int(matcher.group(1)), int(matcher.group(2)) or 1, 1)
+        except ValueError:
+            print(raw_date_str)
+            return date(1970, 1, 1)
+        except AttributeError:
+            return date(1970, 1, 1)
 
     def to_dict(self) -> Dict[str, Union[List, str, int]]:
         return {
                 "id": self.id,
+                "origin": self.origin,
                 "characters": self.characters,
                 "company": self.company,
                 "classification": self.classification,
+                "release_date": self.release_date.isoformat(),
                 "image_urls": self.image_urls,
             }
