@@ -20,9 +20,6 @@ class FigureParser:
     def id(self) -> int:
         id_str = self._parent.select_one(FigureLocators.ID).attrs.get("content")
         matcher = re.search("\d+\:(\d+)", id_str)
-        if not matcher:
-            return -1
-
         return matcher.group(1)
 
     @property
