@@ -96,6 +96,6 @@ class FigureDataParser:
                 "companies": self.companies,
                 "classifications": self.classifications,
                 "version": self.version,
-                "release_date": self.release_date.isoformat(),
+                "release_date": self.release_date.strftime("%Y/%m"),
                 "image_urls": self.image_urls,
             }
