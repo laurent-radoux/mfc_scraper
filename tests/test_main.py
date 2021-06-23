@@ -2,11 +2,8 @@
 
 """Tests for `mfc_scraper` package."""
 
-import pytest
-
 from click.testing import CliRunner
 
-from mfc_scraper import scraper
 from mfc_scraper import __main__
 
 

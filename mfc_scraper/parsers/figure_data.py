@@ -80,10 +80,9 @@ class FigureDataParser:
     def release_date(self) -> date:
         try:
             raw_date_str = self.__get_all_data().get("release date").select_one("a").attrs.get("href")
-            matcher = re.search("year=(\d+)&month=(\d+)", raw_date_str)
+            matcher = re.search(r"year=(\d+)&month=(\d+)", raw_date_str)
             return date(int(matcher.group(1)), int(matcher.group(2)) or 1, 1)
         except ValueError:
-            print(raw_date_str)
             return date(1970, 1, 1)
         except AttributeError:
             return date(1970, 1, 1)

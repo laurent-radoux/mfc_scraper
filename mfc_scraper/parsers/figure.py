@@ -19,8 +19,8 @@ class FigureParser:
     @property
     def id(self) -> int:
         id_str = self._parent.select_one(FigureLocators.ID).attrs.get("content")
-        matcher = re.search("\d+\:(\d+)", id_str)
-        return matcher.group(1)
+        matcher = re.search(r"\d+\:(\d+)", id_str)
+        return int(matcher.group(1))
 
     @property
     def name(self) -> str:
